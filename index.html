@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nithvithan 1st Birthday Celebration</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family: 'Trebuchet MS', sans-serif;
+    height:100vh;
+    background:linear-gradient(135deg,#ff8dc7,#8fd3ff,#fff2a8);
+    animation:bgmove 10s infinite alternate;
+    position:relative;
+}
+
+@keyframes bgmove{
+    0%{filter:hue-rotate(0deg);}
+    100%{filter:hue-rotate(25deg);}
+}
+
+.container{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:10;
+}
+
+.card{
+    width:85%;
+    max-width:850px;
+    padding:45px;
+    border-radius:35px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(18px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.2);
+    animation:floatcard 4s ease-in-out infinite;
+}
+
+@keyframes floatcard{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+}
+
+.title{
+    font-size:70px;
+    color:white;
+    text-shadow:0 0 20px #ff1493;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 15px #fff;}
+    to{text-shadow:0 0 35px #ff0080;}
+}
+
+.name{
+    margin-top:20px;
+    font-size:45px;
+    color:#ff0055;
+    font-weight:bold;
+}
+
+.subtitle{
+    margin-top:20px;
+    font-size:24px;
+    color:#333;
+}
+
+.cake{
+    margin-top:25px;
+    font-size:170px;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-18px);}
+}
+
+.tap{
+    margin-top:25px;
+    display:inline-block;
+    background:#ff006a;
+    color:white;
+    padding:15px 35px;
+    border-radius:40px;
+    font-size:22px;
+    animation:pulse 2s infinite;
+    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+.footer{
+    margin-top:25px;
+    color:white;
+    font-size:22px;
+}
+
+.float-item{
+    position:absolute;
+    animation:floatUp linear infinite;
+    opacity:0.85;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(110vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-120px) rotate(360deg);
+    }
+}
+
+.wish{
+    position:absolute;
+    padding:14px 24px;
+    background:white;
+    border-radius:25px;
+    font-size:20px;
+    font-weight:bold;
+    color:#ff0066;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    animation:popup 4s forwards;
+    z-index:999;
+}
+
+@keyframes popup{
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+    20%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+    80%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-60px);
+        opacity:0;
+    }
+}
+
+.confetti{
+    position:absolute;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(120vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+.music-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    z-index:1000;
+    background:white;
+    border:none;
+    padding:14px 20px;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+<div class="container">
+    <div class="card">
+        <div class="title">🎉 Happy 1st Birthday 🎉</div>
+
+        <div class="name">Tiny Legend Nithvithan 👑</div>
+
+        <div class="subtitle">
+            One year of smiles, happiness, laughter & endless love 💖
+        </div>
+
+        <div class="cake">🎂</div>
+
+        <div class="tap">
+            ✨ Tap Anywhere For Magical Wishes ✨
+        </div>
+
+        <div class="footer">
+            With Love From Appa & Amma ❤️
+        </div>
+    </div>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const wishes = [
+"Happy Birthday Little Prince 👑",
+"May Your Life Be Full of Joy ✨",
+"1 Year of Endless Happiness 💖",
+"God Bless You Always 🙏",
+"Our Tiny Hero Turns One 🎂",
+"Sweetest Baby Ever 🥰",
+"May Your Smile Shine Forever 🌈",
+"Happy Birthday Champ 🎉",
+"Lots of Love & Blessings ❤️",
+"Little Star of Our Family ⭐",
+"You Are Our Greatest Gift 🎁",
+"Enjoy Every Tiny Moment 🎈"
+];
+
+// click effect
+document.body.addEventListener("click", function(e){
+
+    if(e.target.classList.contains("music-btn")) return;
+
+    // wish popup
+    const wish = document.createElement("div");
+    wish.className = "wish";
+
+    wish.innerText = wishes[Math.floor(Math.random()*wishes.length)];
+
+    wish.style.left = e.pageX + "px";
+    wish.style.top = e.pageY + "px";
+
+    document.body.appendChild(wish);
+
+    setTimeout(()=>{
+        wish.remove();
+    },4000);
+
+    // confetti
+    for(let i=0;i<35;i++){
+
+        const conf = document.createElement("div");
+        conf.className = "confetti";
+
+        conf.style.left = e.pageX + "px";
+        conf.style.top = e.pageY + "px";
+
+        conf.style.background = `hsl(${Math.random()*360},100%,50%)`;
+
+        conf.style.animationDuration = (Math.random()*3+2) + "s";
+
+        document.body.appendChild(conf);
+
+        setTimeout(()=>{
+            conf.remove();
+        },5000);
+    }
+
+});
+
+// floating emojis
+const emojis = ["🎈","🎉","💖","✨","⭐","🧸","🎂","🎁"];
+
+function createFloating(){
+
+    const item = document.createElement("div");
+
+    item.className = "float-item";
+
+    item.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+
+    item.style.left = Math.random()*100 + "vw";
+
+    item.style.fontSize = (Math.random()*45+25) + "px";
+
+    item.style.animationDuration = (Math.random()*8+5) + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(()=>{
+        item.remove();
+    },15000);
+}
+
+setInterval(createFloating,400);
+
+// music
+const music = document.getElementById("bgMusic");
+let playing = false;
+
+function toggleMusic(){
+
+    if(!playing){
+        music.play();
+        document.querySelector(".music-btn").innerHTML = "⏸ Pause Music";
+        playing = true;
+    }else{
+        music.pause();
+        document.querySelector(".music-btn").innerHTML = "🎵 Play Music";
+        playing = false;
+    }
+}
+
+</script>
+
+</body>
+</html>
